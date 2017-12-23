@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'testdj.apps.blog',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,23 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# User substitution
+
+AUTH_USER_MODEL = 'blog.MyUser'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = get_env_variable('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = '/blog/'
+
+LOGOUT_REDIRECT_URL = '/blog/'
+
+SITE_ID = 2

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block navbar %}
+  <li class="active">
+  	<a href="{% url 'login' %}">Login</a>
+  </li>
+  <li>
+      <a role="button" href="{% url 'signup' %}">Sign Up</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <h1 class="alert alert-danger">Website is available only for logged users</h1>
+  <div class="form-group">
+	  <h2>Login</h2>
+	  <form method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button class="btn btn-default" type="submit">Login</button>
+	  </form>
+  </div>
+{% endblock %}

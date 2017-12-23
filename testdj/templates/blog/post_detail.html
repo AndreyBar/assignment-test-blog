@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ post.datetime }}</p>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <a class="btn btn-default" href="{% url 'add_comment' pk=post.pk %}">Leave a comment</a>
+                <h2>Comments<small class="pull-right">{{ post.comments.count }} comments</small></h1>
+            </div>
+            {% for comment in post.comments.all %}
+                <div class="media">
+                    <p class="pull-right"><small>{{ comment.timestamp }}</small></p>
+                        <div class="media-body">  
+                          <h4 class="media-heading user_name">{{ comment.user.email }}</h4>
+                          <p>{{ comment.text }}</p>
+                        </div>
+                </div>
+            {% endfor %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+  <li>
+  	<a href="{% url 'login' %}">Login</a>
+  </li>
+  <li class="active">
+      <a href="{% url 'signup' %}">Sign Up</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+ <div class="form-group">
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-default" type="submit">Sign up</button>
+  </form>
+ </div>
+{% endblock %}
